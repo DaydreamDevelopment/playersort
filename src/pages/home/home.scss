@@ -1,3 +1,42 @@
 page-home {
+  background: color($colors, dark) !important;
 
+  ion-header {
+    background: color($colors, primary);
+    min-height: 150px;
+    button {
+      min-width: 94px;
+    }
+    h1 {
+      color: color($colors, light);
+    }
+  }
+  ion-content {
+    margin-top: -50px;
+    background: color($colors, dark) !important;
+
+    .scroll-content {
+      z-index: 10;
+    }
+
+    .card-md .item-md.item-block:not(:last-child) .item-inner {
+      border-bottom: 1px solid color($colors, dark);
+    }
+    
+    .card-md .item-md.item-block:not(.item-input):not(.item-select):not(.item-radio):not(.item-checkbox) .item-inner {
+      border: 0;
+    }
+
+    ion-card {
+      ion-item {
+        ion-label {
+          padding-left: 8px;
+        }
+      }
+      button {
+        max-width: 150px;
+        margin: 25px auto 0 !important;
+      }
+    }
+  }
 }
