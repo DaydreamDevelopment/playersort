@@ -47,9 +47,11 @@ export class HomePage {
   }
 
   showTeamPrompt() {
+    let pluralText = this.group.players.length > 1 ? ' players.' : ' player.';
+    let message = "Your group has " + this.group.players.length + pluralText;
     let prompt = this.alertCtrl.create({
       title: 'GENERATE TEAMS',
-      message: "Your group has " + this.group.players.length + " players.",
+      message: message,
       inputs: [
         {
           name: 'numberOfPlayers',
