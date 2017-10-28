@@ -21,6 +21,7 @@ export class HomePage {
   group: Group = { name: "", players: [] };
   weight: number = null;
   name: string = null;
+  teams: Group[] = [];
 
   constructor(public navCtrl: NavController, public alertCtrl: AlertController) {
 
@@ -66,7 +67,7 @@ export class HomePage {
           }
         },
         {
-          text: 'Generated',
+          text: 'Generate',
           handler: data => {
             this.generateTeams(data.numberOfPlayers);
           }
@@ -77,7 +78,45 @@ export class HomePage {
   }
 
   generateTeams(numberOfTeams: number) {
-
+    this.group.players.sort(this.randomSort);
+    this.group.players.sort(this.orderPlayersBestToWorest);
+    this.teams = [];
+    for(var i=0; i<numberOfTeams; i++) {
+      this.teams.push({name: "Team " + (i + 1), players: []});
+    }
+    for(var j=0; j<this.group.players.length; j++) {
+      this.teams[0].players.push(this.group.players[j]);
+      this.teams.sort(this.orderTeamsByWeightLowestToHeighest);
+    }
+    for(var k=0; k<this.teams.length; k++) {
+      this.teams[k].players.sort(this.randomSort);
+    }
   }
 
+  randomSort(a, b){
+    return 0.5 - Math.random();
+  }
+
+  orderPlayersBestToWorest(a, b) {
+    if (a.weight > b.weight)
+        return -1;
+    if (a.weight < b.weight)
+        return 1;
+    return 0;
+  }
+
+  orderTeamsByWeightLowestToHeighest(a: Group, b: Group) {
+    function getTeamWeight(team: Group) {
+      let weight = 0;
+      for(var i=0; i<team.players.length; i++) {
+          weight = team.players[i].weight + weight;
+      }
+      return weight;
+    }
+    if (getTeamWeight(a) < getTeamWeight(b))
+      return -1;
+    if (getTeamWeight(a) > getTeamWeight(b))
+        return 1;
+    return 0;
+  }
 }
