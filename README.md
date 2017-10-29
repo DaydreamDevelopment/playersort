@@ -1,3 +1,4 @@
 # TODO:
-- Need to fix sorting algorithm as it currently is not even.
-- Need to only sort players who are active
+- Create login & signup
+- Allow multiple groups if logged in
+- Store groups in Firebase

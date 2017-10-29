@@ -36,11 +36,7 @@
               <ion-item>
                 <ion-label>Player Weight</ion-label>
                 <ion-select [(ngModel)]="weight">
-                  <ion-option value="1">1</ion-option>
-                  <ion-option value="2">2</ion-option>
-                  <ion-option value="3">3</ion-option>
-                  <ion-option value="4">4</ion-option>
-                  <ion-option value="5">5</ion-option>
+                  <ion-option *ngFor="let val of weightValues" [value]="val.value">{{ val.label }}</ion-option>
                 </ion-select>
               </ion-item>
             </ion-list>
@@ -72,13 +68,15 @@
                       <ion-icon *ngIf="player.weight > 2" class="hidden-md" name="star" color="primary" item-end></ion-icon>
                       <ion-icon *ngIf="player.weight > 3" class="hidden-md" name="star" color="primary" item-end></ion-icon>
                       <ion-icon *ngIf="player.weight > 4" class="hidden-md" name="star" color="primary" item-end></ion-icon>
+                      <ion-icon *ngIf="player.weight < 5" class="hidden-md" name="star-outline" color="primary" item-end></ion-icon>
                       <ion-icon *ngIf="player.weight < 4" class="hidden-md" name="star-outline" color="primary" item-end></ion-icon>
                       <ion-icon *ngIf="player.weight < 3" class="hidden-md" name="star-outline" color="primary" item-end></ion-icon>
                       <ion-icon *ngIf="player.weight < 2" class="hidden-md" name="star-outline" color="primary" item-end></ion-icon>
-                      <ion-icon *ngIf="player.weight < 1" class="hidden-md" name="star-outline" color="primary" item-end></ion-icon>
                       <ion-icon class="show-md" name="star" color="primary" item-end>{{ player.weight }}</ion-icon>
                       <ion-toggle [(ngModel)]="player.active"></ion-toggle>
-                      <ion-icon name="close" item-end></ion-icon>
+                      <button class="close-button" ion-button (click)="removePlayer(player.name)" icon-only clear item-end>
+                          <ion-icon name="close"></ion-icon>
+                      </button>
                     </ion-item>
                   </ion-card-content>
                 </ion-card>
@@ -91,17 +89,17 @@
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col col-12 col-sm-6>
-        <ion-card *ngFor="let team of teams">
+      <ion-col col-12 col-sm-6 *ngFor="let team of teams">
+        <ion-card>
           <ion-card-header text-center>
-            {{ team.name }}
+            Team {{ team.name }}
           </ion-card-header>
           <ion-card-content>
             <ion-scroll style="height:300px" scrollY="true">
               <ion-list scroll="true">
                 <ion-card *ngFor="let player of team.players" color="dark">
                   <ion-card-content color="dark">
-                    <ion-item color="dark">
+                    <ion-item color="dark" text-center>
                       <ion-label>{{ player.name }}</ion-label>
                     </ion-item>
                   </ion-card-content>

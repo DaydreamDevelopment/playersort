@@ -2,5 +2,7 @@
   "name": "playersort",
   "app_id": "952fe044",
   "type": "ionic-angular",
-  "integrations": {}
+  "integrations": {
+    "cordova": {}
+  }
 }
