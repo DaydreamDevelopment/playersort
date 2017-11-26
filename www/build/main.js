@@ -114,6 +114,7 @@ var HomePage = (function () {
                 }
             }
             this.group.players.push({ name: this.name, weight: this.weight, active: true });
+            this.group.players.sort(this.orderAlphabeticallyPlayers);
             this.weight = 0;
             this.name = "";
             this.storage.set('group', this.group);
@@ -209,6 +210,11 @@ var HomePage = (function () {
         return 0.5 - Math.random();
     };
     HomePage.prototype.orderAlphabetically = function (a, b) {
+        var textA = a.name;
+        var textB = b.name;
+        return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+    };
+    HomePage.prototype.orderAlphabeticallyPlayers = function (a, b) {
         var textA = a.name;
         var textB = b.name;
         return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;

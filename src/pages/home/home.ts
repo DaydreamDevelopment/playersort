@@ -64,6 +64,7 @@ export class HomePage implements OnInit {
     this.storage.get('group').then((group) => {
       if(group) {
         this.group = group;
+        this.group.players.sort(this.orderAlphabeticallyPlayers);
       }
     });
   }
@@ -76,7 +77,8 @@ export class HomePage implements OnInit {
           return;      
         }
       }
-      this.group.players.push({ name: this.name, weight: this.weight, active: true })
+      this.group.players.push({ name: this.name, weight: this.weight, active: true });
+      this.group.players.sort(this.orderAlphabeticallyPlayers);
       this.weight = 0;
       this.name = "";
       this.storage.set('group', this.group);
@@ -180,6 +182,12 @@ export class HomePage implements OnInit {
   }
 
   orderAlphabetically(a: Group, b: Group) {
+    let textA = a.name
+    let textB = b.name
+    return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+  }
+
+  orderAlphabeticallyPlayers(a: Player, b: Player) {
     let textA = a.name
     let textB = b.name
     return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
