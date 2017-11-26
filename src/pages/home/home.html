@@ -10,7 +10,7 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-        <h1>PlayerSort</h1>
+        <img class="header-logo" src="assets/imgs/header-logo.png"/>
       </ion-col>
       <ion-col>
         <!--
@@ -65,6 +65,11 @@
                   <ion-card-content color="dark">
                     <ion-item color="dark">
                       <ion-label>{{ player.name }}</ion-label>
+                      <button class="close-button" ion-button (click)="removePlayer(player.name)" icon-only clear item-end>
+                          <ion-icon name="close" color="danger"></ion-icon>
+                      </button>
+                    </ion-item>
+                    <ion-item color="dark">
                       <ion-icon class="hidden-md" name="star" color="primary" item-end></ion-icon>
                       <ion-icon *ngIf="player.weight > 1" class="hidden-md" name="star" color="primary" item-end></ion-icon>
                       <ion-icon *ngIf="player.weight > 2" class="hidden-md" name="star" color="primary" item-end></ion-icon>
@@ -76,9 +81,6 @@
                       <ion-icon *ngIf="player.weight < 2" class="hidden-md" name="star-outline" color="primary" item-end></ion-icon>
                       <ion-icon class="show-md" name="star" color="primary" item-end>{{ player.weight }}</ion-icon>
                       <ion-toggle [(ngModel)]="player.active"></ion-toggle>
-                      <button class="close-button" ion-button (click)="removePlayer(player.name)" icon-only clear item-end>
-                          <ion-icon name="close" color="danger"></ion-icon>
-                      </button>
                     </ion-item>
                   </ion-card-content>
                 </ion-card>

@@ -25739,7 +25739,6 @@ page-home {
 
 page-home ion-header {
   background: #4d92bf;
-  min-height: 150px;
 }
 
 page-home ion-header button {
@@ -25750,13 +25749,13 @@ page-home ion-header h1 {
   color: #fff;
 }
 
-page-home ion-content {
-  margin-top: -50px;
-  background: #e9e9e9 !important;
+page-home ion-header .header-logo {
+  width: 300px;
+  height: auto;
 }
 
-page-home ion-content .scroll-content {
-  z-index: 10;
+page-home ion-content {
+  background: #e9e9e9 !important;
 }
 
 page-home ion-content .card-md .item-md.item-block:not(:last-child) .item-inner {

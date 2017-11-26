@@ -3,21 +3,19 @@ page-home {
 
   ion-header {
     background: color($colors, primary);
-    min-height: 150px;
     button {
       min-width: 94px;
     }
     h1 {
       color: color($colors, light);
     }
+    .header-logo {
+      width: 300px;
+      height: auto;
+    }
   }
   ion-content {
-    margin-top: -50px;
     background: color($colors, dark) !important;
-
-    .scroll-content {
-      z-index: 10;
-    }
 
     .card-md .item-md.item-block:not(:last-child) .item-inner {
       border-bottom: 1px solid color($colors, dark);
